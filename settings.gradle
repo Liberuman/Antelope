@@ -1,0 +1,19 @@
+rootProject.name='Antelope'
+include ':app'
+
+// 通用业务层
+include ':sharesdk', ':paysdk', ':mapsdk', ':pushsdk', ':loginsdk', ':chatsdk'
+project(':sharesdk').projectDir = new File('commonbusiness/sharesdk')
+project(':paysdk').projectDir = new File('commonbusiness/paysdk')
+project(':mapsdk').projectDir = new File('commonbusiness/mapsdk')
+project(':pushsdk').projectDir = new File('commonbusiness/pushsdk')
+project(':loginsdk').projectDir = new File('commonbusiness/loginsdk')
+project(':chatsdk').projectDir = new File('commonbusiness/chatsdk')
+
+// 通用组件层
+include ':basecomponent'
+project(':basecomponent').projectDir = new File('library/basecomponent')
+
+// 通用数据层
+include ':baselibrary'
+project(':baselibrary').projectDir = new File('library/baselibrary')

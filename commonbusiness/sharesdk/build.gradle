@@ -1,0 +1,21 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultLibConfig project
+
+android {
+    defaultConfig {
+        manifestPlaceholders = [
+            QQ_ID: "qq_id"
+        ]
+    }
+}
+
+dependencies {
+    // 微信分享，登录，支付等
+    implementation "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+"
+    // 微博分享
+    implementation "com.sina.weibo.sdk:core:${WEIBO_VERSION}:openDefaultRelease@aar"
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+}

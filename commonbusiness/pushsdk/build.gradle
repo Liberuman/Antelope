@@ -1,0 +1,22 @@
+apply from: "${rootDir}/common_config.gradle"
+//apply plugin: 'com.huawei.agconnect'
+
+project.ext.setDefaultLibConfig project
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // 极光推送
+    implementation "cn.jiguang.sdk:jpush:${JPUSH_VERSION}"
+    implementation "cn.jiguang.sdk:jcore:${JCORE_VERSION}"
+    // 华为推送
+    implementation "com.huawei.hms:push:${HMS_PUSH_VERSION}"
+    // Vivo推送
+    implementation(name: 'vivo_pushsdk-v2.9.0.0', ext: 'aar')
+    // Oppo推送
+    implementation(name: 'com.heytap.msp-push-2.1.0', ext: 'aar')
+}

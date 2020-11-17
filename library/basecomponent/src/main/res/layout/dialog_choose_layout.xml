@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        tools:text="标题"
+        android:textSize="@dimen/fs_17"
+        android:textColor="@color/b1"
+        android:maxLines="1"
+        android:ellipsize="end"/>
+
+    <ListView
+        android:id="@+id/content_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@null"/>
+
+    <View
+        style="@style/CommonLine"/>
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/cancel_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/t1"
+            android:textSize="@dimen/fs_16" />
+        <TextView
+            android:id="@+id/gap_line"
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/g5" />
+        <TextView
+            android:id="@+id/ok_text"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/t1"
+            android:textSize="@dimen/fs_16" />
+    </LinearLayout>
+</LinearLayout>

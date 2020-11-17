@@ -1,0 +1,7 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultLibConfig project
+
+dependencies {
+
+}

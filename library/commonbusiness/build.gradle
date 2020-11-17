@@ -1,0 +1,29 @@
+apply from: "${rootDir}/common_config.gradle"
+project.ext.setDefaultLibConfig project
+
+apply plugin: "android-aspectjx"
+
+android {
+    defaultConfig {
+        resourcePrefix "cb_"
+    }
+}
+
+dependencies {
+    // 微信分享，登录，支付等
+    api "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+"
+    // 微博分享
+    api "com.sina.weibo.sdk:core:${WEIBO_VERSION}:openDefaultRelease@aar"
+    // 极光推送
+    api "cn.jiguang.sdk:jpush:${JPUSH_VERSION}"
+    api "cn.jiguang.sdk:jcore:${JCORE_VERSION}"
+    // 华为推送
+    api "com.huawei.android.hms:push:${HMS_PUSH_VERSION}"
+    api project(path: ":baselibrary")
+    // 图片操作库
+    api "com.github.liberuman:ImageSet:${IMAGE_SET_VERSION}"
+    // 权限管理
+    api "com.github.liberuman:permissionmanager:${PERMISSION_MANAGER_VERSION}"
+    // 文件下载
+    api "com.liulishuo.filedownloader:library:${FILE_DOWNLOADER_VERSION}"
+}

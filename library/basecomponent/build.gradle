@@ -1,0 +1,19 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultLibConfig project
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    // ARouter
+    api "com.alibaba:arouter-api:${AROUTER_API_VERSION}"
+    kapt "com.alibaba:arouter-compiler:${AROUTER_COMPILER_VERSION}"
+    // EventBus
+    api "org.greenrobot:eventbus:${EVENTBUS_VERSION}"
+    // 侧滑关闭组件
+    api "me.imid.swipebacklayout.lib:library:${SWIPEBACK_VERSION}"
+    api "com.meituan.android.walle:library:${WALLE_VERSION}"
+    api "com.github.hackware1993:MagicIndicator:${MAGICINDICATOR_VERSION}"
+    api project(path: ':baselibrary')
+}

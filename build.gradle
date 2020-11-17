@@ -1,0 +1,54 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext.kotlin_version = '1.3.10'
+
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        google()
+        jcenter()
+        mavenCentral()
+
+        maven { url 'http://developer.huawei.com/repo/' }
+        
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.6.1'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath 'com.meituan.android.walle:plugin:1.1.6'
+        classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.0'
+        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'
+        classpath 'com.huawei.agconnect:agcp:1.3.1.300'
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+        google()
+        jcenter()
+        mavenCentral()
+
+        maven { url 'https://jitpack.io' }
+        // 微博分享
+        maven { url "https://dl.bintray.com/thelasterstar/maven/" }
+        // 华为推送
+        maven { url 'http://developer.huawei.com/repo/' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+project.ext {
+    compileSdkVersion = COMPILE_SDK_VERSION.toInteger()
+    buildToolsVersion = BUILD_TOOLS_VERSION
+    minSdkVersion = MIN_SDK_VERSION
+    targetSdkVersion = TARGET_SDK_VERSION
+
+    isModule = IS_MODULE.toBoolean()
+}

@@ -1,0 +1,13 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultLibConfig project
+
+apply plugin: "android-aspectjx"
+
+dependencies {
+    // 微信登录
+    implementation "com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+"
+    // 微博登录
+    implementation "com.sina.weibo.sdk:core:${WEIBO_VERSION}:openDefaultRelease@aar"
+    implementation "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+}

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <!--
+        常用透明度十六进制对照表：
+        10%: 1a     20%: 33     30%: 4d
+        40%: 66     50%: 80     60%: 99
+        70%: b3     80%: cc     90%: e6
+    -->
+
+    <!-- 白色色系 -->
+    <color name="white">#ffffff</color>
+    <color name="white_10">#1affffff</color>
+    <color name="white_20">#33ffffff</color>
+    <color name="white_30">#4dffffff</color>
+    <color name="white_40">#66ffffff</color>
+    <color name="white_50">#80ffffff</color>
+    <color name="white_60">#99ffffff</color>
+    <color name="white_70">#B3ffffff</color>
+    <color name="white_80">#ccffffff</color>
+    <color name="white_90">#e6ffffff</color>
+
+    <!-- 黑色色系-->
+    <color name="black">#000000</color>
+    <color name="black_10">#1a000000</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_30">#4d000000</color>
+    <color name="black_40">#66000000</color>
+    <color name="black_50">#80000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_70">#B3000000</color>
+    <color name="black_80">#cc000000</color>
+    <color name="black_90">#e6000000</color>
+
+    <!-- UI颜色标准 -->
+    <!--
+        深色字体颜色标准： 不透明度一次为87%，54%， 38%， 12%
+     -->
+    <!-- 主色 -->
+    <color name="b1">#de000000</color>
+    <!-- 辅助色 -->
+    <color name="b2">#8a000000</color>
+    <!-- 禁用文本，提示文本 -->
+    <color name="b3">#61000000</color>
+    <!-- 分割线 -->
+    <color name="b4">#1f000000</color>
+
+    <!--
+        浅色字体颜色标准：不透明度一次为100%，70%， 50%， 12%
+    -->
+    <!-- 主色 -->
+    <color name="w1">#ffffff</color>
+    <!-- 辅助色 -->
+    <color name="w2">#b3ffffff</color>
+    <!-- 禁用文本，提示文本 -->
+    <color name="w3">#80ffffff</color>
+    <!-- 分割线 -->
+    <color name="w4">#1fffffff</color>
+
+    <color name="g1">#333333</color>
+    <color name="g2">#666666</color>
+    <color name="g3">#999999</color>
+    <color name="g4">#cccccc</color>
+    <color name="g5">#e0e0e0</color>
+
+    <!-- 主题色 -->
+    <color name="t1">#3F51B5</color>
+    <color name="t2">#303F9F</color>
+    <color name="t3">#FF4081</color>
+
+</resources>

@@ -1,0 +1,104 @@
+package com.sxu.basecomponent.activity;
+
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+
+import com.sxu.basecomponent.interfaces.RequestProcessor;
+import com.sxu.basecomponent.interfaces.impl.RequestProcessorImpl;
+
+
+/*******************************************************************************
+ * Description: 需要网络请求的Activity基类
+ *
+ * Author: Freeman
+ *
+ * Date: 2018/7/17
+ *
+ * Copyright: all rights reserved by Freeman.
+ *******************************************************************************/
+public abstract class BaseProgressActivity extends BaseCommonActivity implements RequestProcessor {
+
+    private View loadingLayout;
+    private RequestProcessorImpl processor;
+
+    /**
+     * 内容页面是否已被加载，用于区分第一次加载和刷新
+     */
+    protected boolean hasLoaded = false;
+
+    @Override
+    public void initContainerLayout() {
+        processor = new RequestProcessorImpl(this);
+        loadingLayout = processor.getLoadingLayout();
+        int toolbarStyle = layoutStyle.getToolbarStyle();
+        if (toolbarStyle == TOOL_BAR_STYLE_NONE) {
+            setContentView(loadingLayout);
+        } else {
+            super.initContainerLayout();
+            processor.setContainerLayout(containerLayout);
+            containerLayout.addView(loadingLayout, new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+        requestData();
+        processor.setRefreshListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestData();
+            }
+        });
+
+        processor.setOnShowContentLayoutListener(new RequestProcessorImpl.OnShowContentLayoutListener() {
+            @Override
+            public void onShowContentLayout() {
+                // 是否为初次加载，以区分刷新操作
+                if (!hasLoaded) {
+                    hasLoaded = true;
+                    int layoutResId = getLayoutResId();
+                    if (layoutResId != 0) {
+                        View contentLayout = View.inflate(context, layoutResId, null);
+                        processor.updateContentView(loadingLayout, contentLayout);
+                    }
+                    initViews();
+                }
+                initComponent();
+            }
+        });
+    }
+
+    /**
+     * 网络请求的过程
+     */
+    protected abstract void requestData();
+
+    @Override
+    public void updateContentLayout(View contentLayout) {
+        if (processor != null) {
+            processor.updateContentView(loadingLayout, contentLayout);
+        }
+    }
+
+    public void notifyLoadFinish(int msg) {
+        processor.notifyLoadFinish(msg);
+    }
+
+    @Override
+    public View loadLoadingLayout() {
+        return processor.loadLoadingLayout();
+    }
+
+    @Override
+    public View loadEmptyLayout() {
+        return processor.loadEmptyLayout();
+    }
+
+    @Override
+    public View loadFailureLayout() {
+        return processor.loadFailureLayout();
+    }
+
+    @Override
+    public View loadLoginLayout() {
+        return processor.loadLoginLayout();
+    }
+}

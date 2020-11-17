@@ -1,0 +1,31 @@
+apply from: "${rootDir}/common_config.gradle"
+apply plugin: 'org.greenrobot.greendao'
+
+project.ext.setDefaultLibConfig project
+
+dependencies {
+    // Dynamicanimation
+    api "androidx.dynamicanimation:dynamicanimation:${DYNAMICANIMATION_VERSION}"
+    // Multidex
+    api "androidx.multidex:multidex:${MULTIDEX_VERSION}"
+    // Material
+    api "com.google.android.material:material:${MATERIAL_VERSION}"
+    // Flexbox
+    api "com.google.android:flexbox:${FLEXBOX_VERSION}"
+
+    // Okhttp3
+    api "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+    api "com.squareup.okhttp3:logging-interceptor:${OKHTTP_LOG_INTERCEPTOR_VERSION}"
+    api "com.google.code.gson:gson:${GSON_VERSION}"
+    // Retrofit
+    api "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    api "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_RXJAVA_VERSION}"
+    api "com.squareup.retrofit2:converter-gson:${RETROFIT_CONVERTER_GSON_VERSION}"
+    // RxJava
+    api "io.reactivex:rxjava:${RXJAVA_VERSION}"
+    api "io.reactivex:rxandroid:${RXJAVA_RXANDROID_VERSION}"
+    // AutoViewPager
+    api "com.github.liberuman:Autoviewpager:${AUTOVIEWPAGER_VERSION}"
+    // GreenDao
+    api "org.greenrobot:greendao:${GREEDAO_VERSION}"
+}
