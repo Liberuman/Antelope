@@ -1,0 +1,13 @@
+rootProject.name = "Antelope"
+include ':app'
+
+// 实际业务通用层
+include ':common'
+
+// 通用组件层
+include ':basecomponent'
+project(':basecomponent').projectDir = new File('base/basecomponent')
+
+// 通用数据层
+include ':baselibrary'
+project(':baselibrary').projectDir = new File('base/baselibrary')

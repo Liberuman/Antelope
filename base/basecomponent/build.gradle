@@ -1,0 +1,58 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultLibConfig project
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    defaultConfig {
+        kapt {
+            arguments {
+                arg("moduleName", project.getName())
+            }
+        }
+    }
+}
+dependencies {
+
+    implementation "com.google.code.gson:gson:${GSON_VERSION}"
+
+    // ARouter
+    api "com.alibaba:arouter-api:${AROUTER_API_VERSION}"
+    kapt "com.alibaba:arouter-compiler:${AROUTER_COMPILER_VERSION}"
+
+    // EventBus
+    api "org.greenrobot:eventbus:${EVENTBUS_VERSION}"
+
+    // 侧滑关闭组件
+    api "me.imid.swipebacklayout.lib:library:${SWIPEBACK_VERSION}"
+    api "com.meituan.android.walle:library:${WALLE_VERSION}"
+    api "com.github.hackware1993:MagicIndicator:${MAGICINDICATOR_VERSION}"
+    //api project(path: ':baselibrary')
+
+    // Dynamicanimation
+    api "androidx.dynamicanimation:dynamicanimation:${DYNAMICANIMATION_VERSION}"
+
+    // Multidex
+    api "androidx.multidex:multidex:${MULTIDEX_VERSION}"
+
+    // Material
+    api "com.google.android.material:material:${MATERIAL_VERSION}"
+
+    // Flexbox
+    api "com.google.android:flexbox:${FLEXBOX_VERSION}"
+
+    // AutoViewPager:
+    api "com.github.liberuman:Autoviewpager:${AUTOVIEWPAGER_VERSION}"
+
+    // ImmersionBar
+    api 'com.gyf.immersionbar:immersionbar:3.0.0'
+
+    // SmartRefreshLayout
+    api  'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    api  'com.scwang.smart:refresh-header-classics:2.0.3'
+
+    // BaseQuickAdapter
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4'
+}

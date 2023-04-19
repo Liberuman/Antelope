@@ -1,0 +1,221 @@
+/**
+ * 通用的gradle配置
+ *
+ * 说明：
+ * 1. build.gradle中的元素在编译时对相同的元素会自动进行合并，所以除了引用以下默认配置，
+ * 也可在相应的build.gradle中自定义配置。
+ */
+project.ext {
+
+    compileSdkVersion = COMPILE_SDK_VERSION.toInteger()
+    buildToolsVersion = BUILD_TOOLS_VERSION
+    minSdkVersion = MIN_SDK_VERSION
+    targetSdkVersion = TARGET_SDK_VERSION
+    isModule = IS_MODULE.toBoolean()
+
+    /**
+     * App模块的gradle配置
+     */
+    setDefaultAppConfig = {
+        params ->
+            params.apply plugin: 'com.android.application'
+            params.apply plugin: 'com.android.application'
+            params.apply plugin: 'com.android.application'
+
+            importDefaultConfig params
+            setCommonRepositoriesConfig params.repositories
+            setCommonDependenceConfig params.dependencies
+
+            params.android.defaultConfig {
+                manifestPlaceholders = [
+                        JPUSH_PKGNAME: "${applicationId}",
+                        JPUSH_APPKEY : "appkey",
+                        JPUSH_CHANNEL: "channel",
+                        QQ_ID        : "qq_id"
+                ]
+            }
+    }
+
+    /**
+     * 业务模块的gradle配置，在开发阶段需要作为独立模块运行
+     */
+    setDefaultModuleConfig = {
+        params ->
+            params.apply plugin: isModule ? 'com.android.library' : 'com.android.application'
+            importDefaultConfig params
+            setCommonRepositoriesConfig params.repositories
+            setCommonDependenceConfig params.dependencies
+
+            /**
+             * 业务module作为APP时，需要配置applicationId参数及其他在AndroidManifest中定义的元数据
+             */
+            params.android.defaultConfig {
+                if (!isModule) {
+                    applicationId applicationId + "." + params.getName()
+                    versionCode 1
+                    versionName "1.0"
+
+                    manifestPlaceholders = [
+                        JPUSH_PKGNAME: "${applicationId}",
+                        JPUSH_APPKEY : "appkey",
+                        JPUSH_CHANNEL: "channel",
+                        QQ_ID        : "qq_id"
+                    ]
+                }
+            }
+
+            /**
+             * 业务module作为APP时使用res目录下的AndroidManifest文件
+             */
+            params.android.sourceSets {
+                main {
+                    if (!isModule) {
+                        manifest.srcFile 'src/main/res/AndroidManifest.xml'
+                    }
+                }
+            }
+    }
+
+    /**
+     * 通用的底层Lib的gradle配置
+     */
+    setDefaultLibConfig = {
+        params ->
+            params.apply plugin: 'com.android.library'
+            importDefaultConfig params
+    }
+
+    /**
+     * 所有模块通用的配置
+     */
+    importDefaultConfig = {
+        params ->
+            setDefaultAndroidConfig params.android
+            setDefaultDependenceConfig params.dependencies
+    }
+
+    /**
+     * 通用的Android标签配置
+     */
+    setDefaultAndroidConfig = {
+        params ->
+            params.compileSdkVersion compileSdkVersion
+            params.buildToolsVersion buildToolsVersion
+
+            params.defaultConfig {
+                minSdkVersion project.ext.minSdkVersion
+                targetSdkVersion project.ext.targetSdkVersion
+
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+                multiDexEnabled true
+                vectorDrawables.useSupportLibrary true
+
+                ndk {
+                    abiFilters 'armeabi', 'armeabi-v7a'
+                }
+
+                javaCompileOptions {
+                    annotationProcessorOptions {
+                        arguments = [ moduleName : project.getName() ]
+                    }
+                }
+            }
+
+            params.sourceSets {
+                main {
+                    jniLibs.srcDir 'libs'
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
+                }
+            }
+
+            params.dexOptions {
+                dexInProcess true
+                preDexLibraries true
+                javaMaxHeapSize "4g"
+            }
+
+            params.lintOptions {
+                checkReleaseBuilds false
+                abortOnError false
+                quiet true
+                ignoreWarnings true
+            }
+
+            params.aaptOptions {
+                cruncherEnabled = false
+                additionalParameters "--no-version-vectors"
+            }
+
+            params.compileOptions {
+                sourceCompatibility JavaVersion.VERSION_1_8
+                targetCompatibility JavaVersion.VERSION_1_8
+            }
+
+            params.buildTypes {
+                release {
+                    minifyEnabled false
+                    proguardFiles android.getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                }
+            }
+    }
+
+    /**
+     * 通用的依赖项配置
+     */
+    setDefaultDependenceConfig = {
+        params ->
+            params.implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+            params.testImplementation "junit:junit:${JUNIT_VERSION}"
+            params.androidTestImplementation "androidx.test:runner:${TEST_RUNNER_VERSION}"
+            params.androidTestImplementation "androidx.test.espresso:espresso-core:${TEST_ESPRESSO_CORE_VERSION}"
+
+            params.implementation "androidx.appcompat:appcompat:${APPCOMPAT_VERSION}"
+            params.implementation "androidx.constraintlayout:constraintlayout:${CONSTRAINT_LAYOUT_VERSION}"
+            params.implementation "androidx.recyclerview:recyclerview:${RECYCLER_VIEW_VERSION}"
+
+            params.implementation "androidx.lifecycle:lifecycle-extensions:${LIFECYCLE_EXTENSIONS_VERSION}"
+            params.implementation "androidx.lifecycle:lifecycle-runtime:${LIFECYCLE_RUNTIME_VERSION}"
+
+            params.implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2"
+            params.implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2"
+    }
+
+    setCommonDependenceConfig = {
+        params ->
+            // 数据&工具类模块
+            //params.implementation project(':baselibrary')
+            // 组件模块
+            //params.implementation project(':basecomponent')
+            // 分享模块
+            //params.implementation project(':sharesdk')
+            // 推送模块
+            //params.implementation project(':pushsdk')
+            // 登录模块
+            //params.implementation project(':loginsdk')
+            // 支付模块
+            //params.implementation project(':paysdk')
+            // 地图模块
+            //params.implementation project(':mapsdk')
+            // 图片操作库
+            //params.implementation "com.github.liberuman:ImageSet:${IMAGE_SET_VERSION}"
+            // 权限管理
+            params.implementation "com.github.liberuman:permissionmanager:${PERMISSION_MANAGER_VERSION}"
+            // 文件下载
+            params.implementation "com.liulishuo.filedownloader:library:${FILE_DOWNLOADER_VERSION}"
+    }
+
+    /**
+     * application类的module不能直接引用library中的aar，需要显式指定其位置
+     */
+    setCommonRepositoriesConfig = {
+        params ->
+            params.flatDir {
+                dirs 'libs'
+                dirs "${rootDir}/commonbusiness/sharesdk/libs"
+                dirs "${rootDir}/commonbusiness/pushsdk/libs"
+                dirs "${rootDir}/commonbusiness/paysdk/libs"
+        }
+    }
+}

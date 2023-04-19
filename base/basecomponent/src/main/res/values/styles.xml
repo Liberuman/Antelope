@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="ToolbarStyle">
+        <!-- Toolbar的默认高度 -->
+        <item name="android:height">@dimen/toolbar_height</item>
+        <!-- Toolbar的默认背景 -->
+        <item name="android:background">@color/white</item>
+        <!-- Toolbar的底部的阴影宽度 -->
+        <item name="android:elevation" tools:targetApi="21">@dimen/toolbar_elevation</item>
+        <!-- 亮色返回按钮 -->
+        <item name="lightReturnIcon">@drawable/nav_back_white_icon</item>
+        <!-- 暗色返回按钮 -->
+        <item name="darkReturnIcon">@drawable/nav_back_grey_icon</item>
+        <!-- 亮色标题颜色 -->
+        <item name="lightTitleColor">@color/white</item>
+        <!-- 暗色标题颜色 -->
+        <item name="darkTitleColor">@color/black</item>
+    </style>
+
+    <!-- Toolbar 标题的默认样式 -->
+    <style name="NavigationTitleAppearance">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Toolbar 左边的文字的默认样式 -->
+    <style name="NavigationLeftTextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Toolbar 右边的文字的默认样式 -->
+    <style name="NavigationRightTextAppearance">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- 白色背景的主题 -->
+    <style name="CommonWhiteTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <!-- 透明背景的主题 -->
+    <style name="TransparentTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="CommonAdDialog" parent="Theme.AppCompat.DialogWhenLarge">
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 背景设置为非透明边缘会出现阴影效果 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <declare-styleable name="CircleImage">
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressBar">
+        <!-- 进度条外边框的宽度和颜色 -->
+        <attr name="outBorderColor" format="color"/>
+        <attr name="outBorderWidth" format="dimension"/>
+        <!-- 进度条内边框的宽度和颜色 -->
+        <attr name="inBorderColor" format="color"/>
+        <attr name="inBorderWidth" format="dimension"/>
+        <!-- 内部圆的颜色 -->
+        <attr name="inCircleColor" format="color"/>
+        <attr name="progressColor" format="color"/>
+        <!-- 进度条的颜色和宽度 -->
+        <attr name="progressDefaultColor" format="color"/>
+        <attr name="progressWidth" format="dimension"/>
+        <!-- 描述文字的内容,字体大小和字体颜色-->
+        <attr name="descText" format="string"/>
+        <attr name="descTextSize" format="dimension"/>
+        <attr name="descTextColor" format="color"/>
+        <!-- 进度内容,字体大小和字体颜色-->
+        <attr name="progressText" format="string"/>
+        <attr name="progressTextSize" format="dimension"/>
+        <attr name="progressTextColor" format="color"/>
+        <attr name="progressTextStyle">
+            <enum name="normal" value="0"/>
+            <enum name="bold" value="1"/>
+        </attr>
+        <!-- 进度和描述文字之间的间距 -->
+        <attr name="lineGap" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="ZoomImageAttr">
+        <attr name="placeHolderId" format="reference"/>
+        <attr name="errorHolderId" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="LevelLayout">
+        <!-- the count of step that equals levels sub one-->
+        <attr name="stepCount" format="integer"/>
+        <!-- the default position of chosen level -->
+        <attr name="defaultPos" format="integer"/>
+        <!-- the icon of level -->
+        <attr name="thumb" format="reference"/>
+        <!-- the width of level's icon -->
+        <attr name="thumbWidth" format="dimension"/>
+        <!-- the height of level's icon -->
+        <attr name="thumbHeight" format="dimension"/>
+        <!-- the height of line between level and level -->
+        <attr name="lineHeight" format="dimension"/>
+        <!-- the color of line between level and level -->
+        <attr name="lineColor" format="color"/>
+        <!-- the radius of point where is located level -->
+        <attr name="pointRadius" format="dimension"/>
+        <!-- the color of point where is located level -->
+        <attr name="pointColor" format="color"/>
+        <!-- the speed of thumb scrolling -->
+        <attr name="scrollDuration" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="MixedTextImageLayout">
+        <attr name="line_space" format="float" />
+        <attr name="segment_space" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TabLayout">
+        <attr name="iconSize" format="dimension"/>
+        <attr name="textSize" format="dimension"/>
+        <attr name="middleGap" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="TabPageIndicatorEx">
+        <attr name="tabWidth" format="dimension"/>
+        <attr name="indicatorHeight" format="dimension" />
+        <attr name="indicatorPadding" format="dimension"/>
+        <attr name="indicatorColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="SlidingDeleteLayout">
+        <attr name="deleteViewResId" format="reference"/>
+        <attr name="scrollOffset" format="dimension"/>
+    </declare-styleable>
+
+    <declare-styleable name="RefreshLayout">
+        <attr name="headerViewResId" format="reference"/>
+        <attr name="footerViewResId" format="reference"/>
+        <attr name="supportTouchBottomLoad" format="boolean"/>
+        <attr name="viscosity" format="float"/>
+        <attr name="loadMoreOffset" format="dimension"/>
+        <attr name="mode" format="enum">
+            <enum name="disable" value="0"/>
+            <enum name="refresh" value="1"/>
+            <enum name="load_more" value="2"/>
+            <enum name="both" value="3"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ShapeImageView">
+        <attr name="borderColor" format="color"/>
+        <attr name="borderWidth" format="dimension"/>
+        <attr name="radius" format="dimension"/>
+        <attr name="shape" format="enum">
+            <enum name="circle" value="0"/>
+            <enum name="round" value="1"/>
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="VerificationCodeLayout">
+        <attr name="itemWidth" format="dimension"/>
+        <attr name="itemHeight" format="dimension"/>
+        <attr name="itemCount" format="integer"/>
+        <attr name="itemGap" format="dimension"/>
+        <attr name="itemDefaultGap" format="dimension"/>
+        <attr name="itemDefaultGapColor" format="color"/>
+        <attr name="itemBgColor" format="color"/>
+        <attr name="itemBorderWidth" format="dimension"/>
+        <attr name="itemBorderColor" format="color"/>
+        <attr name="itemRadius" format="dimension"/>
+        <attr name="itemTextSize" format="dimension"/>
+        <attr name="itemTextColor" format="color"/>
+        <attr name="itemTextIsBold" format="boolean"/>
+        <attr name="isPassword" format="boolean"/>
+    </declare-styleable>
+</resources>

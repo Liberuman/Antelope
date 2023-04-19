@@ -1,0 +1,68 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultAppConfig project
+
+android {
+    signingConfigs {
+        config {
+            keyAlias '别名'
+            keyPassword 'key密码'
+            storePassword 'store密码'
+            // 将keystore存放在项目中的指定目录下
+            storeFile file('keystoreFile文件路径')
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.sxu.antelope"
+        versionCode 1
+        versionName "1.0"
+        signingConfig signingConfigs.config
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            // 开启混淆
+            minifyEnabled false
+            // 开启对齐优化
+            zipAlignEnabled true
+            // 签名
+            //signingConfig signingConfigs.config
+        }
+
+        release {
+            debuggable false
+            // 删除无用的资源
+            shrinkResources true
+            // 开启混淆
+            minifyEnabled true
+            // 开启对齐优化
+            zipAlignEnabled true
+            // 签名
+            signingConfig signingConfigs.config
+
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+
+    implementation project(path: ':common')
+
+
+    //kapt "com.alibaba:arouter-compiler:${AROUTER_COMPILER_VERSION}"
+//    if (isModule) {
+//        implementation project(':assistant')
+//    }
+}
+
+//walle {
+//    // 指定渠道包的输出路径
+//    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+//    // 定制渠道包的APK的文件名称
+//    apkFileNameFormat = '${appName}-${packageName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
+//    // 渠道配置文件
+//    channelFile = new File("${project.getProjectDir()}/channel")
+//}

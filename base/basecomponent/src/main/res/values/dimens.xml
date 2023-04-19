@@ -1,0 +1,31 @@
+<resources>
+
+    <!-- toolbar默认高度 -->
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="toolbar_padding">20dp</dimen>
+    <dimen name="toolbar_title_padding">48dp</dimen>
+
+
+    <!-- 字体标准 -->
+    <dimen name="fs_56">56sp</dimen>
+    <dimen name="fs_45">45sp</dimen>
+    <dimen name="fs_36">36sp</dimen>
+    <dimen name="fs_34">34sp</dimen>
+    <dimen name="fs_32">32sp</dimen>
+    <dimen name="fs_24">24sp</dimen>
+    <!-- 标题 同样式下中文字体比英文字体大1个sp， 下同 -->
+    <dimen name="fs_21">21sp</dimen>
+    <dimen name="fs_20">20sp</dimen>
+    <dimen name="fs_18">18sp</dimen>
+    <!-- 副标题 -->
+    <dimen name="fs_17">17sp</dimen>
+    <dimen name="fs_16">16sp</dimen>
+    <!-- 正文 -->
+    <dimen name="fs_15">15sp</dimen>
+    <dimen name="fs_14">14sp</dimen>
+    <!-- 辅助性文字 -->
+    <dimen name="fs_13">13sp</dimen>
+    <dimen name="fs_12">12sp</dimen>
+
+</resources>

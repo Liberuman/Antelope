@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="view_holder_tag" />
+
+
+    <!-- 亮色返回按钮 -->
+    <attr name="lightReturnIcon" format="reference" />
+    <!-- 暗色返回按钮 -->
+    <attr name="darkReturnIcon" format="reference" />
+    <!-- 亮色标题颜色 -->
+    <attr name="lightTitleColor" format="color" />
+    <!-- 暗色标题颜色 -->
+    <attr name="darkTitleColor" format="color" />
+
+    <declare-styleable name="SwipeMenuLayout">
+        <attr name="swipeEnable" format="boolean"/>
+        <attr name="ios" format="boolean"/>
+        <attr name="leftSwipe" format="boolean"/>
+    </declare-styleable>
+
+</resources>

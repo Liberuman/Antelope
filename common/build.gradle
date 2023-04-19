@@ -1,0 +1,31 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultLibConfig project
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    sourceSets {
+        main {
+            res.srcDirs = [
+                // common层的资源
+                "src/main/common-res",
+                // 与业务有关的资源
+                "src/main/res"
+            ]
+        }
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+}
+
+dependencies {
+
+    api "androidx.lifecycle:lifecycle-viewmodel:2.2.0"
+
+    api project(path: ':baselibrary')
+    api project(path: ':basecomponent')
+}

@@ -1,0 +1,47 @@
+apply from: "${rootDir}/common_config.gradle"
+
+project.ext.setDefaultLibConfig project
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+
+    // Okhttp3: https://github.com/square/okhttp
+    api "com.squareup.okhttp3:okhttp:${OKHTTP_VERSION}"
+    api "com.squareup.okhttp3:logging-interceptor:${OKHTTP_LOG_INTERCEPTOR_VERSION}"
+
+    // Http请求插件: https://github.com/jgilfelt/chuck
+    debugImplementation "com.readystatesoftware.chuck:library:1.1.0"
+    releaseImplementation "com.readystatesoftware.chuck:library-no-op:1.1.0"
+
+    // HttpLog
+    implementation('com.github.ihsanbal:LoggingInterceptor:3.1.0') {
+        exclude group: 'org.json', module: 'json'
+    }
+
+    // Gson: https://github.com/google/gson
+    api "com.google.code.gson:gson:${GSON_VERSION}"
+
+    // Retrofit: https://github.com/square/retrofit
+    api "com.squareup.retrofit2:retrofit:${RETROFIT_VERSION}"
+    api "com.squareup.retrofit2:adapter-rxjava:${RETROFIT_RXJAVA_VERSION}"
+    api "com.squareup.retrofit2:converter-gson:${RETROFIT_CONVERTER_GSON_VERSION}"
+
+    // RxJava: https://github.com/ReactiveX/RxJava
+    api "io.reactivex:rxjava:${RXJAVA_VERSION}"
+    api "io.reactivex:rxandroid:${RXJAVA_RXANDROID_VERSION}"
+
+    // room数据库
+    api 'androidx.room:room-runtime:2.2.5'
+    kapt 'androidx.room:room-compiler:2.2.5'
+
+    // 工具类: https://github.com/Blankj/AndroidUtilCode
+    api 'com.blankj:utilcodex:1.30.1'
+
+    // MMKV: https://github.com/Tencent/MMKV
+    implementation 'com.tencent:mmkv-static:1.2.10'
+
+    // leakcanary: https://github.com/square/leakcanary
+    //implementation "com.squareup.leakcanary:leakcanary-android:2.7"
+}
